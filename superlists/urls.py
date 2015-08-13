@@ -18,6 +18,9 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^$', 'lists.views.home_page', name = 'home'),
-    url(r'^lists/the-only-list-in-the-world/$', 'lists.views.view_list', name='view_list'),
+    url(r'^lists/(\d+)/$', 'lists.views.view_list', name='view_list'),
+    url(r'^lists/new$', 'lists.views.new_list', name='new_list'),
+    url(r'^lists/(.+)/add_item$', 'lists.views.add_item_to_list', name='add_to_list'),
     #url(r'^admin/', include(admin.site.urls)),
 ]
+

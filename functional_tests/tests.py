@@ -67,11 +67,15 @@ class NewVisitorTest(LiveServerTestCase):
 
         print("Edith quits...")
         self.browser.quit()
-        self.fail('Finish the tests')
+
+        import time
+        time.sleep(2)
 
         print("A new user comes : Francis")
+        self.browser = webdriver.Firefox()
+        self.browser.implicitly_wait(3)
         self.browser.get(self.live_server_url)
-        page_text = self.browser.find_element_by_tag_name("body")
+        page_text = self.browser.find_element_by_tag_name("body").text
         print("Test : did francis fall onto edith's items ?")
         self.assertNotIn(edith_item_to_send_1,page_text)
         self.assertNotIn(edith_item_to_send_2,page_text)
@@ -89,7 +93,7 @@ class NewVisitorTest(LiveServerTestCase):
         print("Test : ...not the same URL as edith's ?")
         self.assertNotEqual(francis_url, edith_list_url)
 
-        page_text = self.browser.find_element_by_tag_name("body")
+        page_text = self.browser.find_element_by_tag_name("body").text
         print("Test : is there any edith's element ?")
         self.assertNotIn(edith_item_to_send_1, page_text)
         self.assertNotIn(edith_item_to_send_2, page_text)
