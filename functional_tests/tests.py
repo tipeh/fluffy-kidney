@@ -34,7 +34,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         # Edith has heard about a cool new online to-do app. She goes
         # to check out its homepage
         print("Connecting to the URL")
-        self.browser.get(self.live_server_url)
+        self.browser.get(self.server_url)
 
 
         # She notices the page title and header mention to-do lists
@@ -92,7 +92,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         print("A new user comes : Francis")
         self.browser = webdriver.Firefox()
         self.browser.implicitly_wait(3)
-        self.browser.get(self.live_server_url)
+        self.browser.get(self.server_url)
         page_text = self.browser.find_element_by_tag_name("body").text
         print("Test : did francis fall onto edith's items ?")
         self.assertNotIn(edith_item_to_send_1,page_text)
@@ -119,7 +119,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
 
     def test_styling_and_layout(self):
         #Edith goes to the homepage
-        self.browser.get(self.live_server_url)
+        self.browser.get(self.server_url)
         self.browser.set_window_size(1024, 768)
 
         #She notices the input is nicely centered
